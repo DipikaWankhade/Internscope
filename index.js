@@ -94,6 +94,10 @@ app.delete('/app/cources/:id', (req, res) => {
      res.send(cource);
 });
 
+app.get('/test', (req, res) => {
+    res.status(200).send({message : "API testing"})
+    })
+    
  function validateCource(cource) {
      const schema = {
          title: joi.string().min(3).required()
