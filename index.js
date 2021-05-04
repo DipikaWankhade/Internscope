@@ -9,8 +9,12 @@ const conn = mongoose.createConnection("mongodb://127.0.0.1:27017/interscope");;
 exports.mongoose = mongoose;
 exports.conn = conn;
 let userSchema = mongoose.Schema({
-    name : {type : String},
+    first_name : {type : String},
+    last_name :  {type : String},
+    phone : {type : String},
+    email :  {type : String},
     },
+
     {
         strict: true,
         collection: 'user',
@@ -131,6 +135,21 @@ app.get('/test', (req, res) => {
     };
     return joi.validate(cource, schema);
 } 
+
+app.post('/signup',async (req,res) => {
+    let {firstname,lastname,phone,email_id}=req.body
+    console.log(req.body)
+    let userdata = {
+        first_name : firstname,
+        last_name : lastname,
+        phone : phone,
+        email : email_id
+    }
+    let savedata = await UserModel.create(userdata)
+    res.send(savedata)
+})
+
+
 
 //poet envirnment variable
 const port = process.env.PORT || 3010;
