@@ -86,7 +86,6 @@ res.send(cource);
 
 });
 
-
 //delete request handler
 app.delete('/app/cources/:id', (req, res) => {
     const index = cources.indexOf(cource);
@@ -97,7 +96,7 @@ app.delete('/app/cources/:id', (req, res) => {
 app.get('/test', (req, res) => {
     res.status(200).send({message : "API testing"})
     })
-    
+
  function validateCource(cource) {
      const schema = {
          title: joi.string().min(3).required()
@@ -110,7 +109,7 @@ app.get('/test', (req, res) => {
     };
     return joi.validate(cource, schema);
 } 
-function validateCource(cource) {
+ function validateCource(cource) {
     const schema = {
         Duration: joi.string().min(3).required()
     };
