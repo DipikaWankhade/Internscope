@@ -1,7 +1,23 @@
 const express = require('express');
 const joi = require('joi'); //use for validation 
 const app = express();
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
 app.use(express.json());
+const mongoose = require('mongoose');
+const conn = mongoose.createConnection("mongodb://127.0.0.1:27017/interscope");;
+exports.mongoose = mongoose;
+exports.conn = conn;
+let userSchema = mongoose.Schema({
+    name : {type : String},
+    },
+    {
+        strict: true,
+        collection: 'user',
+        versionKey: false
+    }
+)
+var UserModel = conn.model('User', userSchema);
 
 const cources = [
     
